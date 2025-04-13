@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Ticket Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6f7ff; /* Matches client dashboard background */
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #00b3b3; /* Matches client dashboard header/footer color */
+            margin-bottom: 20px;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto; /* Centers the table */
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #00b3b3; /* Table header color */
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        button {
+            background-color: #00b3b3; /* Matches client dashboard button color */
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.45s, color 0.45s;
+            display: block;
+            margin: 20px auto; /* Centers the button */
+            text-align: center;
+        }
+        button:hover {
+            background-color: #fff;
+            color: #00b3b3;
+            border: 1px solid #00b3b3;
+        }
+        p {
+            text-align: center;
+            font-size: 1.2em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Ticket Details</h1>
+
+    {% if ticket %}
+        <table>
+            <tr>
+                <th>Ticket ID</th>
+                <td>{{ ticket['id'] }}</td>
+            </tr>
+            <tr>
+                <th>Client Name</th>
+                <td>{{ ticket['username'] }}</td>
+            </tr>
+            <tr>
+                <th>Ticket Type</th>
+                <td>{{ ticket['ticket_type'] }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ ticket['description'] }}</td>
+            </tr>
+            <tr>
+                <th>Submission Channel</th>
+                <td>{{ ticket['submission_channel'] }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ ticket['status'] }}</td>
+            </tr>
+            <tr>
+                <th>Assigned Agent</th>
+                <td>{{ ticket['assigned_agent'] if ticket['assigned_agent'] else 'Unassigned' }}</td>
+            </tr>
+            <tr>
+                <th>Priority</th>
+                <td>{{ ticket['priority'] }}</td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td>{{ ticket['category'] }}</td>
+            </tr>
+        </table>
+    {% else %}
+        <p>No ticket details available.</p>
+    {% endif %}
+
+    <form action="{{ url_for('client_dashboard') }}">
+        <button type="submit">Return to Dashboard</button>
+    </form>
+</body>
+</html>

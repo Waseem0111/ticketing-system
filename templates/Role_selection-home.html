@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Role Selection</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your custom CSS file -->
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Ticketing System</h1>
+        <p>Please select your role to access:</p>
+    </header>
+
+    <!-- Role Selection Form -->
+    <section id="role-selection">
+       <form action="/select_role" method="POST">
+            <label for="username">Enter your Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+            <label for="role">Select your Role:</label>
+            <select id="role" name="role" required>
+                <option value="Client">Client</option>
+                <option value="Agent">Agent</option>
+                <option value="Admin">Admin</option>
+            </select>
+
+            <button type="submit">Enter</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Ticketing System</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assign a Ticket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #e6f7ff; /* Matches client dashboard background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            color: #00b3b3; /* Matches the header/footer color */
+            margin-bottom: 20px; /* Adds spacing below the title */
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 500px; /* Set a maximum width */
+        }
+        form {
+            width: 100%;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #00b3b3; /* Matches client dashboard button color */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.45s, color 0.45s;
+            margin-bottom: 10px;
+            width: 100%; /* Full width */
+            /* Limit button width */
+            display: block;
+
+             /* Center the button */
+        }
+        button:hover {
+            background-color: #fff;
+            color: #00b3b3;
+            border: 1px solid #00b3b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Assign a Ticket</h1> <!-- Title above the container -->
+
+    <div class="container">
+        <form method="POST">
+            <label for="ticket_id">Ticket ID:</label>
+            <select name="ticket_id" id="ticket_id" required>
+                {% for ticket in all_tickets %}
+                    <option value="{{ ticket['id'] }}">
+                        {{ ticket['id'] }} - {{ ticket['description'] }} (Assigned Agent: {{ ticket['assigned_agent'] if ticket['assigned_agent'] else 'Unassigned' }})
+                    </option>
+                {% endfor %}
+            </select>
+
+            <label for="assigned_agent">Assign to Agent:</label>
+            <select name="assigned_agent" id="assigned_agent" required>
+                {% for agent in agents %}
+                    <option value="{{ agent['username'] }}">{{ agent['username'] }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="priority">Priority:</label>
+            <select name="priority" id="priority" required>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+
+            <label for="category">Category:</label>
+            <select name="category" id="category" required>
+                <option value="Maintenance">Maintenance</option>
+                <option value="Technical">Technical</option>
+                <option value="Customer Service">Customer Service</option>
+                <!-- Add more categories as needed -->
+            </select>
+
+            <button type="submit">Assign Ticket</button>
+        </form>
+        <form action="{{ url_for('agent_dashboard') }}">
+            <button type="submit">Return to Dashboard</button>
+        </form>
+    </div>
+</body>
+</html>

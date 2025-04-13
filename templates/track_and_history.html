@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Ticket History and Track Ticket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6f7ff; /* Matches the client dashboard background */
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #00b3b3; /* Matches the header/footer color */
+            text-align: center; /* Centered titles */
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto; /* Centers the table */
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #00b3b3; /* Table header color */
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        form {
+            margin: 20px auto;
+            text-align: center; /* Center form elements */
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            text-align: center; /* Center the label */
+        }
+        input[type="text"] {
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 50%;
+            box-sizing: border-box;
+            display: block;
+            margin: 0 auto; /* Centers the input field */
+        }
+        button {
+            background-color: #00b3b3; /* Matches client dashboard button color */
+            border-style: solid;
+            border-color: #00b3b3;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.45s, color 0.45s;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: white;
+            color: #00b3b3;
+        }
+        .return-button {
+            background-color: #00b3b3; /* Matches the client dashboard button color */
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-style: solid;
+            border-color: #00b3b3;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.45s, color 0.45s;
+            display: inline-block;
+            margin-top: 20px; /* Add spacing below the button */
+        }
+        .return-button:hover {
+            background-color: white;
+            color: #00b3b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Ticket History and Track Ticket</h1>
+
+    <!-- Ticket History Section -->
+    <h2>Ticket History</h2>
+    <table>
+        <tr>
+            <th>Ticket ID</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Description</th>
+            <th>Date Submitted</th>
+        </tr>
+        {% for ticket in tickets %}
+        <tr>
+            <td>{{ ticket['id'] }}</td>
+            <td>{{ ticket['ticket_type'] }}</td>
+            <td>{{ ticket['status'] }}</td>
+            <td>{{ ticket['description'] }}</td>
+            <td>{{ ticket['submission_time'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Track a Specific Ticket Section -->
+    <h2>Track a Specific Ticket</h2>
+    <form action="{{ url_for('view_ticket_details') }}" method="POST">
+        <label for="ticket_id">Enter Ticket ID:</label>
+        <input type="text" name="ticket_id" id="ticket_id" required>
+        <button type="submit">Track Ticket</button>
+    </form>
+
+    <!-- Return to Dashboard Button -->
+    <form action="{{ url_for('client_dashboard') }}">
+        <button type="submit" class="return-button">Return to Dashboard</button>
+    </form>
+</body>
+</html>

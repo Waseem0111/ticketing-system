@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Reports</title>
+</head>
+<body>
+    <h1>Admin Reports</h1>
+
+    <h2>Ticket Status Report</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Total Tickets</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for report in ticket_report %}
+                <tr>
+                    <td>{{ report[0] }}</td>
+                    <td>{{ report[1] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Feedback Report</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Average Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for report in feedback_report %}
+                <tr>
+                    <td>{{ report[0] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Support Requests Report</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Total Requests</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for report in support_report %}
+                <tr>
+                    <td>{{ report[0] }}</td>
+                    <td>{{ report[1] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e6f7ff; /* Matches client dashboard background */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header, footer {
+            background-color: #00b3b3; /* Matches client dashboard header/footer color */
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .button-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 40px;
+        }
+        .button-card {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 150px;
+            width: 250px;
+            padding: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+            transition: transform 0.2s;
+
+        }
+        .button-card:hover {
+            transform: translateY(-5px);
+        }
+        .button-card h3 {
+            color: white; /* Matches the card header color */
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .button-card p {
+            margin-bottom: 15px;
+            color: white; /* Subtle text color for descriptions */
+        }
+        .cta-button {
+            background-color: #00b3b3;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .cta-button:hover {
+            background-color: #fff;
+            color: #00b3b3;
+            border: 1px solid #00b3b3;
+        }
+        footer {
+            background-color: #00b3b3;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        footer button {
+            background-color: #fff;
+            color: #00b3b3;
+            border-style: solid;
+            border-color:white ;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.45s, color 0.45s;
+        }
+        footer button:hover {
+            background-color: #00b3b3;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Agent Dashboard</h1>
+    </header>
+
+    <div class="button-container">
+        <div class="button-card">
+            <h3>Ticket Management</h3>
+            <p>Manage submitted tickets</p>
+            <form action="/agent_ticket_maneger" method="get">
+                <button type="submit" class="cta-button">Manage Tickets</button>
+            </form>
+        </div>
+        <div class="button-card">
+            <h3>Assign Tickets</h3>
+            <p>Distribute tickets to agents</p>
+            <form action="/agent_assign_ticket" method="get">
+                <button type="submit" class="cta-button">Assign</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <form action="{{ url_for('select_role') }}" method="POST">
+            <button type="submit">Logout</button>
+        </form>
+        <p>&copy; 2024 Ticketing System. All rights reserved.</p>
+    </footer>
+</body>
+</html>

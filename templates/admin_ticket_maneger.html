@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Tickets</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6f7ff; /* Matches the agent dashboard background */
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #00b3b3; /* Matches the agent dashboard color */
+            margin-bottom: 20px;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto; /* Centers the table */
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #00b3b3; /* Table header color */
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        button {
+            background-color: #00b3b3; /* Matches agent dashboard button color */
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            margin: 20px auto;
+            display: block;
+            transition: background-color 0.45s, color 0.45s;
+        }
+        button:hover {
+            background-color: #fff;
+            color: #00b3b3;
+            border: 1px solid #00b3b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Manage Tickets</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Ticket ID</th>
+                <th>Client Name</th>
+                <th>Ticket Type</th>
+                <th>Status</th>
+                <th>Assigned To</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in tickets %}
+            <tr>
+                <td>{{ ticket['id'] }}</td>
+                <td>{{ ticket['username'] }}</td>
+                <td>{{ ticket['ticket_type'] }}</td>
+                <td>{{ ticket['status'] }}</td>
+                <td>{{ ticket['assigned_agent'] if ticket['assigned_agent'] else 'Unassigned' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <form action="{{ url_for('admin_dashboard') }}">
+        <button type="submit">Return to Dashboard</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e6f7ff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header, footer {
+            background-color: #00b3b3;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1, footer p {
+            margin: 0;
+        }
+        footer form {
+            margin: 10px 0;
+        }
+        .logout-button {
+            background-color: white;
+            color: #00b3b3;
+            border-style: solid;
+            border-color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.45s, color 0.45s;
+        }
+        .logout-button:hover {
+            background-color: #00b3b3;
+            color: white;
+        }
+        .button-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+        .button-card {
+            position: relative;
+            width: 250px;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 10px;
+            color: white;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+            transition: transform 0.2s;
+        }
+        .button-card h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .button-card p {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+        .button-card:hover {
+            transform: translateY(-5px);
+        }
+        .cta-button {
+            background-color: #00b3b3;
+            color: white;
+            border-style: solid;
+            border-color: #00b3b3;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 0.9em;
+            margin-top: 10px;
+            align-self: center;
+            transition: background-color 0.45s, color 0.45s;
+        }
+        .cta-button:hover {
+            background-color: white;
+            color: #00b3b3;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to the Admin Dashboard</h1>
+</header>
+
+<div class="button-container">
+    <div class="button-card">
+        <h3>Reporting</h3>
+        <p>Generate and view system reports</p>
+        <form action="/Reporting" method="get">
+            <button type="submit" class="cta-button">View Reports</button>
+        </form>
+    </div>
+    <div class="button-card">
+        <h3>View Feedbacks</h3>
+        <p>Check feedbacks from clients</p>
+        <form action="/view_feedback" method="get">
+            <button type="submit" class="cta-button">View Feedbacks</button>
+        </form>
+    </div>
+    <div class="button-card">
+        <h3>Ticket Manager</h3>
+        <p>Manage submitted tickets</p>
+        <form action="/admin_ticket_maneger" method="get">
+            <button type="submit" class="cta-button">Manage Tickets</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <form action="{{ url_for('logout') }}" method="POST">
+        <button type="submit" class="logout-button">Logout</button>
+    </form>
+    <p>&copy; 2024 Ticketing System. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

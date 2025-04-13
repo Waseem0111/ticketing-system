@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Feedbacks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6f7ff;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #00b3b3;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #00b3b3;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .return-button {
+            background-color: #00b3b3;
+            color: #fff;
+            border-style: solid;
+            border-color: #00b3b3;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.45s, color 0.45s;
+            text-align: center;
+            display: block;
+            margin: 20px auto;
+            text-decoration: none;
+        }
+        .return-button:hover {
+            background-color: white;
+            color: #00b3b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Feedbacks</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>ticket_id</th>
+                <th>username</th>
+                <th>feedback</th>
+                <th>Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for feedback in feedbacks %}
+            <tr>
+                <td>{{ feedback[0] }}</td>
+                <td>{{ feedback[1] }}</td>
+                <td>{{ feedback[2] }}</td>
+                <td>{{ feedback[3] }}</td>
+                <td>{{ feedback[4] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <form action="{{ url_for('admin_dashboard') }}">
+        <button type="submit" class="return-button">Return to Dashboard</button>
+    </form>
+</body>
+</html>

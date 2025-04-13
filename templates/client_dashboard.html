@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Client Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e6f7ff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header, footer {
+            background-color: #00b3b3;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1, footer p {
+            margin: 0;
+        }
+        footer form {
+            margin: 10px 0;
+        }
+        .logout-button {
+            background-color: white;
+            color: #00b3b3;
+            border-style: solid;
+            border-color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.45s, color 0.45s;
+        }
+        .logout-button:hover {
+            background-color: #00b3b3;
+            color: white;
+        }
+        .button-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+        .button-card {
+            position: relative;
+            width: 250px;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 10px;
+            color: white;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+            transition: transform 0.2s;
+        }
+        .button-card h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .button-card p {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+        .button-card:hover{
+            transform: translateY(-5px);
+        }
+        .cta-button {
+            background-color: #00b3b3;
+            color: white;
+            border-style: solid;
+            border-color: #00b3b3;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 0.9em;
+            margin-top: 10px;
+            align-self: center;
+            transition: background-color 0.45s, color 0.45s;
+        }
+        .cta-button:hover {
+            background-color: white;
+            color: #00b3b3;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to the Client Dashboard</h1>
+</header>
+
+<div class="button-container">
+    <div class="button-card submit-ticket-btn">
+        <h3>Submit Ticket</h3>
+        <p>Start your support journey</p>
+        <form action="/submit_ticket" method="get">
+            <button type="submit" class="cta-button">Submit</button>
+        </form>
+    </div>
+    <div class="button-card track-history-btn">
+        <h3>Track & History</h3>
+        <p>Review past tickets</p>
+        <form action="/track_and_history" method="get">
+            <button type="submit" class="cta-button">View</button>
+        </form>
+    </div>
+    <div class="button-card feedback-btn">
+        <h3>Feedback</h3>
+        <p>Provide your insights</p>
+        <form action="/send_feedback" method="get">
+            <button type="submit" class="cta-button">Give Feedback</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <form action="{{ url_for('logout') }}" method="POST">
+        <button type="submit" class="logout-button">Logout</button>
+    </form>
+    <p>&copy; 2024 Ticketing System. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

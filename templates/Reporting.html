@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporting</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6f7ff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1, h2 {
+            color: #00b3b3;
+        }
+        form {
+            margin: 20px 0;
+        }
+        label {
+            font-weight: bold;
+        }
+        select {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #00b3b3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: white;
+            color: #00b3b3;
+            border: 1px solid #00b3b3;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #00b3b3;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reporting</h1>
+
+    <!-- Report Selection Form -->
+    <form method="POST" action="/Reporting">
+        <label for="report-type">Select Report Type:</label>
+        <select id="report-type" name="report_type" required>
+            <option value="ticket_summary_data" {% if report_type == 'ticket_summary_data' %}selected{% endif %}>Ticket Summary</option>
+            <option value="agent_performance_data" {% if report_type == 'agent_performance_data' %}selected{% endif %}>Agent Performance</option>
+        </select>
+        <button type="submit">Generate Report</button>
+    </form>
+
+    <!-- Ticket Summary Report -->
+    {% if report_type == 'ticket_summary_data' %}
+        <h2>Ticket Summary</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ticket Type</th>
+                    <th>Status</th>
+                    <th>Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in ticket_summary %}
+                <tr>
+                    <td>{{ row['ticket_type'] }}</td>
+                    <td>{{ row['status'] }}</td>
+                    <td>{{ row['count'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <!-- Agent Performance Report -->
+    {% if report_type == 'agent_performance_data' %}
+        <h2>Agent Performance</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Agent</th>
+                    <th>Total Tickets</th>
+                    <th>Resolved Tickets</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in agent_performance %}
+                <tr>
+                    <td>{{ row['assigned_agent'] }}</td>
+                    <td>{{ row['total_tickets'] }}</td>
+                    <td>{{ row['resolved_tickets'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+<form action="{{ url_for('admin_dashboard') }}">
+        <button type="submit" class="return-button">Return to Dashboard</button>
+    </form>
+</body>
+</html>

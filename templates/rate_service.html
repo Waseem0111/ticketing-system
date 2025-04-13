@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate Service</title>
+</head>
+<body>
+    <h1>Rate Your Service</h1>
+    <form method="POST">
+        <label for="ticket_id">Ticket ID:</label>
+        <input type="text" name="ticket_id" required><br><br>
+
+        <label for="rating">Rating (1 to 5):</label>
+        <input type="number" name="rating" min="1" max="5" required><br><br>
+
+        <button type="submit">Submit Rating</button>
+    </form>
+
+    {% if result %}
+        <p>{{ result }}</p>
+    {% endif %}
+</body>
+</html>
